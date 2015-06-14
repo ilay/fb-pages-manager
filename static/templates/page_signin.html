@@ -1,0 +1,12 @@
+<div class="container w-xxl w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
+  <a href class="navbar-brand block m-t">{{app.name}}</a>
+  <div class="m-b-lg">
+    <div class="wrapper text-center">
+      <strong>Sign in to get in touch</strong>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" ng-click="login()" ng-hide="isLoggedIn">
+      <i class="fa fa-facebook"></i> 使用 Facebook 登入  
+    </button>
+  </div>
+  <div class="text-center" ng-include="'static/templates/blocks/page_footer.html'"></div>
+</div>
