@@ -5,8 +5,8 @@
  */
 angular.module('app')
   .run(
-    [          '$rootScope', '$state', '$stateParams',
-      function ($rootScope,   $state,   $stateParams) {
+    [          '$rootScope', '$state', '$stateParams', '$facebook',
+      function ($rootScope,   $state,   $stateParams, $facebook) {
           $rootScope.$state = $state;
           $rootScope.$stateParams = $stateParams;
           
@@ -66,6 +66,15 @@ angular.module('app')
                   templateUrl: '/static/templates/page.html',
                   controller: ['$scope', '$stateParams', '$rootScope', '$http', '$state', '$facebook', '$location', function($scope, $stateParams, $rootScope, $http, $state, $facebook, $location) {
                      $scope.pageId = $stateParams.pageId;
+                      
+                      $facebook.api("/"+$scope.pageId+"?fields=posts,id,name,link,likes,cover").then(
+                        function(response) {
+                            console.log(response);
+                            $scope.pageData = response;
+                        },
+                        function(err) {
+                            console.log("err");
+                        });
                  }]
               })
               // others

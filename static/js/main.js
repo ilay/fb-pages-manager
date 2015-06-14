@@ -15,7 +15,7 @@ angular.module('app')
             if(response.status === 'connected') {
                 
                 console.log(response.authResponse.accessToken);
-                $scope.token = response.authResponse.accessToken;
+                $rootScope.token = response.authResponse.accessToken;
               
                 $facebook.api("/me").then(
                     function(response) {
@@ -28,7 +28,7 @@ angular.module('app')
                         console.log("please login");
                     });
 
-                  $facebook.api("/me/accounts?limit=999&access_token="+$scope.token).then(
+                  $facebook.api("/me/accounts?limit=999&access_token="+$rootScope.token).then(
                     function(response) {
                         console.log(response);
                         $scope.pages = response.data;
