@@ -67,14 +67,48 @@ angular.module('app')
                   controller: ['$scope', '$stateParams', '$rootScope', '$http', '$state', '$facebook', '$location', function($scope, $stateParams, $rootScope, $http, $state, $facebook, $location) {
                      $scope.pageId = $stateParams.pageId;
                       
-                      $facebook.api("/"+$scope.pageId+"?fields=posts,id,name,link,likes,cover").then(
+                      $facebook.api("/"+$scope.pageId+"?fields=promotable_posts,id,name,link,likes,cover,username").then(
                         function(response) {
                             console.log(response);
                             $scope.pageData = response;
+
+                            var promotable_posts = $scope.pageData.promotable_posts.data;
+                            var insights = [];
+                            $scope.pageData.promotable_posts['insights'] = insights;
+                            for (var index = 0; index < promotable_posts.length; ++index) {
+                              var promotable_post = promotable_posts[index];
+                              $facebook.api("/"+promotable_post.id+"/insights/post_impressions").then(
+                                function(response) {
+                                  insights.push(response.data[0]);
+                                  console.log($scope.pageData.promotable_posts);
+                              },
+                              function(err) {
+                                  console.log("err");
+                              });
+                            }
                         },
                         function(err) {
                             console.log("err");
                         });
+                      
+                      $scope.post = function() {
+                        $facebook.api("/"+$scope.pageId+"/feed", 'post', 
+             { 
+                 message     : "It's awesome ...",
+                 link        : 'http://csslight.com',
+                 picture     : 'http://csslight.com/application/upload/WebsitePhoto/567-grafmiville.png',
+                 name        : 'Featured of the Day',
+                 from: $scope.pageId,
+                 description : 'CSS Light is a showcase for web design encouragement, submitted by web designers of all over the world. We simply accept the websites with high quality and professional touch.'
+         }).then(
+                        function(response) {
+                            console.log(response);
+                            
+                        },
+                        function(err) {
+                            console.log("err");
+                        });
+                    };
                  }]
               })
               // others
