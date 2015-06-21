@@ -1,4 +1,4 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm">
+<div class="hbox bg-light hbox-auto-xs hbox-auto-sm">
   <div class="col " >
     <div style="background:url({{pageData.cover.source}}) center center; background-size:cover">
       <div class="wrapper-lg bg-white-opacity">
@@ -8,35 +8,29 @@
               <img src="http://graph.facebook.com/{{pageId}}/picture?width=100" class="img-square">
             </a>
             <div class="clear m-b">
-              <div class="m-b m-t-sm">
+              <div class="m-bb m-t-sm">
                 <span class="h3 text-black">{{pageData.name}}</span>
+                <p></p>
+                <span class="h4 text-black">{{pageData.category}} - {{pageData.likes}} Likes the Page</span>
               </div>
               <p class="m-b">
                 <a href="{{pageData.link}}" target="_blank" class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
               </p>
             </div>
           </div>
-          <div class="col-sm-5">
-            <div class="pull-right pull-none-xs text-center">
-              <a href class="m-b-md inline m">
-                <span class="h3 block font-bold">{{pageData.likes}}</span>
-                <small>Likes</small>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
-    <div class="wrapper bg-white b-b">
+    <!--<div class="wrapper bg-white b-b">
       <ul class="nav nav-pills nav-sm">
         <li class="active"><a href >Post</a></li>
-        <!--<li><a href>Profile</a></li>-->
+        <!--<li><a href>Profile</a></li>
       </ul>
-    </div>
-    <div class="padder">      
+    </div>-->
+    <div class="padder wrapper bg-light b-b">      
       <div class="streamline b-l b-info m-l-lg m-b padder-v">
         <div>
-          <a class="pull-left thumb-sm avatar m-l-n-md">
+          <a class="pull-left thumb-sm bg-light avatar m-l-n-md">
             <img src="http://graph.facebook.com/{{pageId}}/picture?width=100" class="img-circle" alt="...">
           </a>
           <div class="m-l-lg m-b-lg">
@@ -52,7 +46,7 @@
                   <textarea class="form-control no-border" rows="3" placeholder="Say something..."></textarea>
                 </form>
                 <div class="panel-footer bg-light lter">
-                  <button class="btn btn-info pull-right btn-sm" ng-click="logout()">Post</button>
+                  <button class="btn btn-info pull-right btn-sm" ng-click="post()">Post</button>
                   <ul class="nav nav-pills nav-sm">
                   </ul>
                 </div>
@@ -61,22 +55,23 @@
           </div>
         </div>
         <div ng-repeat="post in pageData.promotable_posts.data">
-          <a class="pull-left thumb-sm avatar m-l-n-md">
+          <a class="bg-light pull-left thumb-sm avatar m-l-n-md">
             <img src="http://graph.facebook.com/{{post.from.id}}/picture?type=square" class="img-circle" alt="{{pageData.picture.data.url}}">
           </a>
           <div class="m-l-lg">
             <div class="m-b-xs">
-              <a href class="h4" ng-hide="post.story == undefined">{{post.story}}</a>
+              <div class="h4 ng-binding" ng-hide="post.story == undefined">{{post.story}}</div>
               <span class="text-muted m-l-sm pull-right">
                 {{post.created_time | date:'MM/dd/yyyy @ h:mma'}}
               </span>
             </div>
             <div class="m-b">
               <div class="h4" ng-hide="post.story !== undefined">{{post.from.name}} says: "{{post.message}}"</div>
-              <img src="{{post.picture}}" class="b b-a wrapper-xs bg-white img-responsive" ng-hide="post.picture == undefined"
-              <div class="m-t-sm">
-                <a href class="text-muted m-xs"><i class="icon-refresh">{{post.is_published}}</i></a>
-                <a href class="text-muted m-xs"><i class="icon-star"></i>{{pageData.promotable_posts.insights[$index].values[0].value}}</a>
+              <img src="{{post.picture}}" class="wrapper-pic img-responsive" ng-hide="post.picture == undefined"
+              <div class="m-t-sm" ng-show="{{post.status_type}} == wall_post">
+                <a href class="text-muted m-xs"><i class="fa fa-moon-o" ng-show="{{post.is_published}} === false"></i></a>
+                <a href class="text-muted m-xs"><i class="fa fa-sun-o" ng-show="{{post.is_published}} === true"></i></a>
+                <a href class="text-muted m-xs"><i class="icon-star"></i> {{post.impression.values[0].value}}</a>
                 <!--<a href class="text-muted m-xs"><i class="icon-refresh"></i> 13</a>-->
               </div>
             </div>

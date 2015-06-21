@@ -1,20 +1,26 @@
 <!-- list -->
+<h5></h5>
 <ul class="nav">
   <li ui-sref-active="active">
     <a ui-sref="app.dashboard">
-      <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
-      <span class="font-bold">Dashboard</span>
     </a>
   </li>
-
-  <li class="line dk"></li>
-
-  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-lg">
+    <span>Dashboard</span>
+  </li>
+  <li ng-repeat="page in pages">
+    <a href="#/app/dashboard/{{page.id}}">
+      <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+      <span class="ng-scope">{{page.name}}</span>
+    </a>
+  </li>
+  <div class="linke dk"></div>
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-lg">
     <span>Pages</span>
   </li>
   <li ng-repeat="page in pages">
     <a href="#/app/page/{{page.id}}">
-      <i class="fa fa-file"></i>
+      <i class="fa fa-file text-primary-lt"></i>
       <span class="ng-scope">{{page.name}}</span>
     </a>
   </li>

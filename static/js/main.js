@@ -47,7 +47,7 @@ angular.module('app')
     
       // config
       $scope.app = {
-        name: 'Pages Manager',
+        name: 'pageM',
         version: '1.0',
         // for chart colors
         color: {
