@@ -253,10 +253,10 @@ angular.module('app')
                                 });
 
                             $scope.post = function() {
-                                /*$facebook.api('/' + $scope.pageId + '/feed', 'post', {
-                                    message: "It's awesome ...",
+                                $facebook.api('/' + $scope.pageId + '/feed', 'post', {
+                                    message: $scope.message,
                                     name: 'Featured of the Day',
-                                    from: '360125717480928',
+                                    from: $rootScope.uid,
                                     description: 'CSS Light is a showcase for web design encouragement, submitted by web designers of all over the world. We simply accept the websites with high quality and professional touch.'
                                 }).then(
                                     function(response) {
@@ -264,9 +264,9 @@ angular.module('app')
 
                                     },
                                     function(err) {
-                                        console.log("err");
-                                    });*/
-                                $facebook.ui(
+                                        console.log(err);
+                                    });
+                                /*$facebook.ui(
                                 {
                                     method: 'feed',
                                     name: 'This is the content of the "name" field.',
@@ -276,7 +276,7 @@ angular.module('app')
                                     from: $scope.pageId
                                 }, function(response){
                                     console.log(response);
-                                });
+                                });*/
                             };
                         }]
                     })

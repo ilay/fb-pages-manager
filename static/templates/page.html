@@ -28,7 +28,7 @@
     </div>
     <div class="padder wrapper bg-light b-b">      
       <div class="streamline b-l b-info m-l-lg m-b padder-v">
-        <!--<div>
+        <div>
           <a class="pull-left thumb-sm bg-light avatar m-l-n-md">
             <img src="http://graph.facebook.com/{{pageId}}/picture?width=100" class="img-circle" alt="...">
           </a>
@@ -42,7 +42,7 @@
             <div>
               <div class="panel panel-default m-t-md m-b-n-sm pos-rlt">
                 <form>
-                  <textarea class="form-control no-border" rows="3" placeholder="Say something..."></textarea>
+                  <textarea class="form-control no-border" rows="3" placeholder="Say something..." ng-value="message"></textarea>
                 </form>
                 <div class="panel-footer bg-light lter">
                   <button class="btn btn-info pull-right btn-sm" ng-click="post()">Post</button>
@@ -52,7 +52,7 @@
               </div>
             </div>
           </div>
-        </div>-->
+        </div>
         <div ng-repeat="post in pageData.promotable_posts.data">
           <a class="bg-light pull-left thumb-sm avatar m-l-n-md">
             <img src="http://graph.facebook.com/{{post.from.id}}/picture?type=square" class="img-circle" alt="{{pageData.picture.data.url}}">
