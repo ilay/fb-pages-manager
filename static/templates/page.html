@@ -21,15 +21,14 @@
         </div>
       </div>
     </div>
-    <!--<div class="wrapper bg-white b-b">
+    <div class="wrapper bg-white b-b">
       <ul class="nav nav-pills nav-sm">
-        <li class="active"><a href >Post</a></li>
-        <!--<li><a href>Profile</a></li>
+        <li class="active"><a ng-click="post()">Post</a></li>
       </ul>
-    </div>-->
+    </div>
     <div class="padder wrapper bg-light b-b">      
       <div class="streamline b-l b-info m-l-lg m-b padder-v">
-        <div>
+        <!--<div>
           <a class="pull-left thumb-sm bg-light avatar m-l-n-md">
             <img src="http://graph.facebook.com/{{pageId}}/picture?width=100" class="img-circle" alt="...">
           </a>
@@ -53,7 +52,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
         <div ng-repeat="post in pageData.promotable_posts.data">
           <a class="bg-light pull-left thumb-sm avatar m-l-n-md">
             <img src="http://graph.facebook.com/{{post.from.id}}/picture?type=square" class="img-circle" alt="{{pageData.picture.data.url}}">

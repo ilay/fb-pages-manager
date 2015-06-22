@@ -30,7 +30,7 @@ angular.module('app')
     $translateProvider.useLocalStorage();
   }])
   .config(['$facebookProvider', function($facebookProvider){
-    $facebookProvider.setAppId('793927034048293'); // local development: port 8080
-    //$facebookProvider.setAppId('516008265213610'); // production: fb-pages-manager.appspot.com
+    //$facebookProvider.setAppId('793927034048293'); // local development: port 8080
+    $facebookProvider.setAppId('516008265213610'); // production: fb-pages-manager.appspot.com
     $facebookProvider.setPermissions("email,manage_pages,read_insights,publish_pages");
   }]);

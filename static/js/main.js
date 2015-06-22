@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-  .controller('AppCtrl', ['$scope', '$rootScope', '$translate', '$localStorage', '$window', '$facebook', '$location',
-    function(              $scope, $rootScope,   $translate,   $localStorage,   $window,  $facebook, $location ) {
+  .controller('AppCtrl', ['$scope', '$modal', '$rootScope', '$log', '$translate', '$localStorage', '$window', '$facebook', '$location',
+    function(              $scope, $modal, $rootScope, $log,  $translate,   $localStorage,   $window,  $facebook, $location ) {
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       isIE && angular.element($window.document.body).addClass('ie');
@@ -21,6 +21,7 @@ angular.module('app')
                     function(response) {
                         $scope.name = response.name;
                         $scope.uid = response.id;
+                        $rootScope.uid = response.id;
                         $scope.email = response.email;
                         console.log(response);
                     },
